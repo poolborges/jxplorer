@@ -1,0 +1,91 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jxplorer</groupId>
+        <artifactId>jxplorer-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.jxplorer</groupId>
+    <artifactId>jxplorer-libs-local</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>jxplorer-libs-local</name>
+    <description>Install local jars to local repository.
+        The contain libraries not available on maven repos</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-jxworkbench-library</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase> <!-- use process-resources phase to.force re-installation -->
+                        <configuration>
+                            <file>${project.basedir}/lib/jxworkbench.jar</file>
+                            <groupId>com.pegacat</groupId>
+                            <artifactId>jxworkbench</artifactId>
+                            <version>3.3.1.2</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>install-help-library</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase> <!-- use process-resources phase to.force re-installation -->
+                        <configuration>
+                            <file>${project.basedir}/lib/help.jar</file>
+                            <groupId>com.pegacat</groupId>
+                            <artifactId>jxplorer-help</artifactId>
+                            <version>1.0.0-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>install-javax.help-library</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase> <!-- use process-resources phase to.force re-installation -->
+                        <configuration>
+                            <file>${project.basedir}/lib/jhall.jar</file>
+                            <groupId>javax.help</groupId>
+                            <artifactId>javax.help</artifactId>
+                            <version>1.0.0-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>install-javax.testprovider-library</id>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <phase>process-resources</phase> <!-- use process-resources phase to.force re-installation -->
+                        <configuration>
+                            <file>${project.basedir}/lib/testprovider.jar</file>
+                            <groupId>com.pegacat</groupId>
+                            <artifactId>testprovider</artifactId>
+                            <version>3.3rc1 </version>
+                            <packaging>jar</packaging>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
+

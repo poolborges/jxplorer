@@ -1,0 +1,6 @@
+= JXplorer (FORK)
+
+Mature LDAP, LDIF and DSML client with i18n support. 
+
+== 
+
