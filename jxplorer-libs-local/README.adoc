@@ -1,0 +1,12 @@
+= JXplorer Libraries
+
+This project wiil install some library at local maven repository
+
+== Libraries
+
+* help.jar
+* jhall.jar 
+* junit.jar
+* jxplorer.jar
+* jxworkbench.jar
+* testprovider.jar
