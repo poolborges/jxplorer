@@ -1,0 +1,63 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.2.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.2.0 https://maven.apache.org/xsd/assembly-2.2.0.xsd">
+
+    <id>zip</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${project.basedir}/htmldocs</directory>
+            <outputDirectory>./htmldocs</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/icons</directory>
+            <outputDirectory>./icons</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/images</directory>
+            <outputDirectory>./images</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/language</directory>
+            <outputDirectory>./language</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/security.default</directory>
+            <outputDirectory>./security.default</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/templates</directory>
+            <outputDirectory>./templates</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/themes</directory>
+            <outputDirectory>./themes</outputDirectory>
+        </fileSet>
+        <!-- FILE FROM ROOT DIRECTORY --> 
+        <fileSet>
+            <directory>${project.basedir}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+              <include>jxplorer.xml</include>
+              <include>log4j.xml</include>
+              <include>*.ldif</include>
+              <include>*.test</include>
+              <include>*.txt</include>
+              <include>*.ico</include>
+              <include>*.conf</include>
+              <include>*.bat</include>
+              <include>*.sh</include>
+            </includes>
+        </fileSet>
+        
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>jars</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>
