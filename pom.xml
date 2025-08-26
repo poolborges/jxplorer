@@ -19,6 +19,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bundle.namespace>${project.groupId}.${project.artifactId}</bundle.namespace>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
     
     
@@ -42,42 +43,31 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.4.2</version>
                 </plugin>
-                <!-- Java Compiler plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.2</version>
-                    <configuration>
-                        <!-- NetBeans 7.2+ requires JDK 7 -->
-                        <source>1.6</source>
-                        <target>1.6</target>
-                    </configuration>
+                    <version>3.14.0</version>
                 </plugin>
-
                 <!-- Adds artifacts to the local maven repository -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <version>3.1.4</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
         
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.8.1.0</version> <!-- Last version supporting Java 1.8 -->
                 <executions>
                     <execution>
                         <id>failing-on-high</id>
                         <phase>install</phase>
-                        <goals>
-                            <goal>findbugs</goal>
-                        </goals>
                         <configuration>
                             <failOnError>true</failOnError>
                         </configuration>
@@ -86,22 +76,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>repository.jboss.org-public</id>
-            <name>JBoss.org Maven repository</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
-        </repository>
-
-        <repository>
-            <id>Typesafe releases</id>
-            <url>http://repo.typesafe.com/typesafe/ivy-releases</url>
-        </repository>
-        <repository>
-            <id>Typesafe snapshots</id>
-            <url>http://repo.typesafe.com/typesafe/ivy-snapshots</url>
-        </repository>
-    </repositories>
 
 </project>
