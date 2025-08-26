@@ -38,6 +38,6 @@ jobs:
            fi
       shell: bash
     - name: Run tests and collect coverage
-      run: ./mvnw test -Pqa -B --no-transfer-progress
+      run: ./mvnw test -B --no-transfer-progress
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
