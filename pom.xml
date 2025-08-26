@@ -74,6 +74,49 @@
                     </execution>
                 </executions>
             </plugin>
+            
+             <!-- Generate ${project.build.directory} ${project.build.outputDirectory}/META-INF/build.properties -->
+            <plugin>
+                <groupId>de.smartics.maven.plugin</groupId>
+                <artifactId>buildmetadata-maven-plugin</artifactId>
+                <version>1.7.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>provide-buildmetadata</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Generated Code from src/main/java-template/.../Version.java -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>templating-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>filter-src</id>
+                        <goals>
+                            <goal>filter-sources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Generate build info used in Version.java -->
+            <plugin>
+                <groupId>com.labun.buildnumber</groupId>
+                <artifactId>jgit-buildnumber-maven-plugin</artifactId>
+                <version>2.7.0</version>
+                <executions>
+                    <execution>
+                        <id>jgit-buildnumber</id>
+                        <goals>
+                            <goal>extract-buildnumber</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
