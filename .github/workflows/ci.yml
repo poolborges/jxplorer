@@ -41,6 +41,6 @@ jobs:
            fi
       shell: bash
     - name: Run tests with Xvfb and collect coverage
-      run: xvfb-run --auto-display ./mvnw test -B --no-transfer-progress
+      run: xvfb-run --auto-servernum ./mvnw test -B --no-transfer-progress
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
