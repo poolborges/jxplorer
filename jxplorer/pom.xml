@@ -68,58 +68,18 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>4.2.0</version> <!-- For Java 11 -->
-                <extensions>true</extensions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version>
                 <configuration>
-                    <supportedProjectTypes>
-                        <supportedProjectType>jar</supportedProjectType>
-                    </supportedProjectTypes>
-                    <instructions>
-                        
-                        <Export-Package/>
-                        <!-- 
-                        <Bundle-Activator>org.mdeos.mobics.coapserver.osgi.Activator</Bundle-Activator>
-                        -->
-                        <Main-Class>com.ca.directory.jxplorer.JXplorer</Main-Class>
-                        
-                        <!-- Instruction for bnd to process SCR annotations -->
-                        <_dsannotations>*</_dsannotations>
-                        <!-- Generate SCR headers in mnifest file -->
-                        <Service-Component>*</Service-Component>
-                        <!--Instruction for bnd to process Meta annotations -->
-                        <_metatype>*</_metatype>
-                    </instructions>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>com.ca.directory.jxplorer.JXplorer</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>bundle-manifest</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>manifest</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>bundle-install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>install</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.4.2</version>
-                    <configuration>
-                        <archive>
-                            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                        </archive>
-                    </configuration>
-                </plugin>
-                
         </plugins>
     </build>
     
