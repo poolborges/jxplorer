@@ -5,10 +5,7 @@ package com.ca.directory.jxplorer.editor;
 //
 import com.ca.commons.cbutil.CBButton;
 import com.ca.commons.cbutil.CBIntText;
-import sun.applet.AppletAudioClip;
-
 import javax.swing.*;
-import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,10 +13,13 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class audioaccessory extends JPanel implements PropertyChangeListener {
 
-  protected		AudioClip     currentClip;
+  protected		Clip          currentClip;
   protected		String        currentName="";
   protected		JLabel        fileLabel;
   protected		CBButton       playButton, stopButton, helpButton;
@@ -41,20 +41,19 @@ public class audioaccessory extends JPanel implements PropertyChangeListener {
 
     playButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (currentClip != null) {
+        if (currentClip != null && !currentClip.isRunning()) {
           if (unSupported){
               infoBox = new JOptionPane();    //TE: information box added to inform user that certain types of audio can't be played.
               infoBox.showMessageDialog(null, CBIntText.get("Unable to play audio formats of type .mp3, .rmi or .ram"), CBIntText.get("Information Message"), JOptionPane.INFORMATION_MESSAGE);
               return;
           }
-          currentClip.stop();
-          currentClip.play();
+          currentClip.start();
         }
       }
     });
     stopButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (currentClip != null) {
+        if (currentClip != null && currentClip.isRunning()) {
           currentClip.stop();
         }
       }
@@ -114,7 +113,9 @@ public class audioaccessory extends JPanel implements PropertyChangeListener {
     try {
       URL u = f.getAbsoluteFile().toURL();  // CB try to make URL handling more robust...
       //URL u = new URL("file:///" + f.getAbsolutePath());
-      currentClip = new AppletAudioClip(u);
+      AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(u);
+      currentClip = AudioSystem.getClip();
+      currentClip.open(audioInputStream);
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -133,7 +134,8 @@ public class audioaccessory extends JPanel implements PropertyChangeListener {
   
   public void stopPlay()
   { 
-	if(currentClip == null) {return;}
-	currentClip.stop();
+	if (currentClip != null && currentClip.isRunning()) {
+          currentClip.stop();
+        }
   }
 }

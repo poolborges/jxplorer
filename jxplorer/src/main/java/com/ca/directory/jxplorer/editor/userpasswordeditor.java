@@ -15,13 +15,13 @@ import java.security.MessageDigest;
 
 import com.ca.commons.cbutil.CBBase64;
 import com.ca.directory.jxplorer.jcrypt;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.Base64;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -117,9 +117,9 @@ myName:rqXexS6ZhobKA
             else
             {
 
-                if (!expectedResult.equals(Base64.encode(hash)))
+                if (!expectedResult.equals(Base64.getEncoder().encode(hash)))
                 {
-                    System.out.println("Test Error running " + algorithm + " algorithm; got hash (b64): " + Base64.encode(hash) + " expected (b64): " + expectedResult);
+                    System.out.println("Test Error running " + algorithm + " algorithm; got hash (b64): " + Base64.getEncoder().encode(hash) + " expected (b64): " + expectedResult);
                     System.exit(-1);
                 }
             }

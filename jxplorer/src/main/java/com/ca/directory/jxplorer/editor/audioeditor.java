@@ -2,7 +2,6 @@ package com.ca.directory.jxplorer.editor;
 
 import com.ca.commons.cbutil.*;
 import com.ca.directory.jxplorer.JXConfig;
-import com.ca.directory.jxplorer.JXplorer;
 import com.ca.directory.jxplorer.HelpIDs;
 
 import javax.swing.*;
@@ -11,8 +10,11 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-import sun.audio.*;
+
 
 /**
  *    Simple audio editor that trys to play the audio clip.
@@ -25,7 +27,8 @@ public class audioeditor extends basicbinaryeditor
     protected CBButton        btnPlay, btnStop;
     protected JLabel         label;
     protected File           file;
-    protected AudioStream    audioStream;
+    protected AudioInputStream    audioStream;
+    protected Clip              currentClip;
     protected audioaccessory audioAccess;
 
     private static Logger log = Logger.getLogger(audioeditor.class.getName());
@@ -132,18 +135,16 @@ public class audioeditor extends basicbinaryeditor
     {
         try
         {          
-            audioStream = new AudioStream(new ByteArrayInputStream(bytes));
+            audioStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(bytes));
+            currentClip = AudioSystem.getClip();
+            currentClip.open(audioStream);
+            currentClip.start();
         } 
-        catch (IOException e) 
+        catch (Exception e) 
         {
             CBUtility.error(CBIntText.get("Error with audio file") + ": " + e);
-        }
-        catch (NullPointerException  ee)
-        {
-            log.log(Level.WARNING, CBIntText.get("No data available") + ": ", ee);
-        }            
+        }          
             
-         AudioPlayer.player.start(audioStream);
     }
 
    /**
@@ -151,7 +152,9 @@ public class audioeditor extends basicbinaryeditor
     */
     public void audioStop()
     {
-         AudioPlayer.player.stop(audioStream);
+        if (currentClip != null && currentClip.isRunning()) {
+          currentClip.stop();
+        }
     }
 
    /**

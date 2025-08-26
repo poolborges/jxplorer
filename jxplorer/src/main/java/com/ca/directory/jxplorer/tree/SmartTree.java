@@ -20,7 +20,6 @@ import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
-import java.awt.dnd.peer.DragSourceContextPeer;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -2166,13 +2165,15 @@ public class SmartTree extends JTree
 
         dragSource = new DragSource()
         {
+            @Override
             protected DragSourceContext createDragSourceContext
-                    (DragSourceContextPeer dscp, DragGestureEvent dgl, Cursor dragCursor,
+                    (DragGestureEvent dgl, Cursor dragCursor,
                      Image dragImage, Point imageOffset, Transferable t,
                      DragSourceListener dsl)
             {
-                return new DragSourceContext(dscp, dgl, dragCursor, dragImage, imageOffset, t, dsl)
+                return new DragSourceContext(dgl, dragCursor, dragImage, imageOffset, t, dsl)
                 {
+                    @Override
                     protected void updateCurrentCursor(int dropOp, int targetAct, int status)
                     {
                     }
