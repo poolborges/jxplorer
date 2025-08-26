@@ -70,7 +70,7 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>6.0.0</version>
+                <version>4.2.0</version> <!-- For Java 11 -->
                 <extensions>true</extensions>
                 <configuration>
                     <supportedProjectTypes>
