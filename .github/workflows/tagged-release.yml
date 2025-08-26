@@ -15,14 +15,14 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - name: Set up JDK 17
+    - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
-        java-version: '17'
+        java-version: '11'
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn package -Pdocs-gen,distribuition -B --file pom.xml
+      run: mvn package -DskipTests -Dmaven.test.skip=true -Pdocs-gen,distribuition -B --file pom.xml
     - name: Release Binary
       uses: "marvinpinto/action-automatic-releases@latest"
       with:

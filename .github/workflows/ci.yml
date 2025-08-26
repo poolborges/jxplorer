@@ -13,15 +13,18 @@ jobs:
       matrix:
         #os: [ubuntu-latest, macOS-latest, windows-latest]
         os: [ubuntu-latest]
-        java: [17,21]
+        java: [11]
       fail-fast: false
       max-parallel: 4
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         submodules: recursive
+    - name: Install Xvfb
+      run: sudo apt-get update && sudo apt-get install -y xvfb
+          
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
@@ -37,7 +40,7 @@ jobs:
               echo "$RUNNER_OS not need change permission"
            fi
       shell: bash
-    - name: Run tests and collect coverage
-      run: ./mvnw test -B --no-transfer-progress
+    - name: Run tests with Xvfb and collect coverage
+      run: xvfb-run --auto-display ./mvnw test -B --no-transfer-progress
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
