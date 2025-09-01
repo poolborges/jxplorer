@@ -38,20 +38,23 @@
             <groupId>javax.help</groupId>
             <artifactId>javahelp</artifactId>
             <version>2.0.05</version>
+            <scope>compile</scope>
         </dependency>
         
         <!-- JXWorkBench -->
         <dependency>
             <groupId>com.pegacat</groupId>
             <artifactId>jxworkbench</artifactId>
-            <version>3.3.1.2</version>     
+            <version>3.3.1.2</version>
+            <scope>runtime</scope>
         </dependency>
         
         <!-- JXplorer Help -->
         <dependency>
             <groupId>com.pegacat</groupId>
             <artifactId>jxplorer-help</artifactId>
-            <version>1.0.0-SNAPSHOT</version>   
+            <version>1.0.0-SNAPSHOT</version> 
+            <scope>runtime</scope>  
         </dependency>
         
         <!-- TEST Dependencies -->
@@ -104,6 +107,47 @@
                                     </descriptors>
                                     <finalName>${project.artifactId}-${project.version}-dist</finalName>
                                     <appendAssemblyId>false</appendAssemblyId>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>native</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <configuration>
+                            <buildArgs>
+                                -Djava.awt.headless=false
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.7.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <archive>
+                                        <manifest>
+                                            <mainClass>
+                                                Sample
+                                            </mainClass>
+                                        </manifest>
+                                    </archive>
+                                    <descriptorRefs>
+                                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                                    </descriptorRefs>
                                 </configuration>
                             </execution>
                         </executions>
