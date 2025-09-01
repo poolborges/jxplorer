@@ -1,3 +1,5 @@
 /target/
 /jxplorer/target/
 /jxplorer-libs-local/target/
+/jxplorer/security/
+/jxplorer/jxconfig.txt
