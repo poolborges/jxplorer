@@ -75,7 +75,7 @@
                 </executions>
             </plugin>
             
-             <!-- Generate ${project.build.directory} ${project.build.outputDirectory}/META-INF/build.properties -->
+            <!-- Generate ${project.build.directory} ${project.build.outputDirectory}/META-INF/build.properties -->
             <plugin>
                 <groupId>de.smartics.maven.plugin</groupId>
                 <artifactId>buildmetadata-maven-plugin</artifactId>

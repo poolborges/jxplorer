@@ -29,14 +29,14 @@ endif::[]
 :version-label!:
 
 
-WARNING: IN DEVELOPMENT (NOT RELEASE YET)
+WARNING: Computer Associates Open Source Software License, Version 1.0
 
 ifdef::badges[]
 == Build status
 
 image:https://github.com/poolborges/jxplorer/actions/workflows/ci.yml/badge.svg["Build Status", link="https://github.com/poolborges/jxplorer/actions/workflows/ci.yml"]
 image:https://codecov.io/github/poolborges/jxplorer/coverage.svg["Code Coverage", link="https://codecov.io/gh/poolborges/jxplorer"]
-image:https://img.shields.io/badge/License-GPLv3-blue.svg["License: GPL v3", link="https://www.gnu.org/licenses/gpl-3.0.en.html"]
+image:https://img.shields.io/badge/CAOSSL-1.0-blue.svg["License: CAOSSL-v1.0", link="https://jxplorer.org/licence.html"]
 image:https://badges.crowdin.net/krpos/localized.svg["Crowdin/Translation Status", link="https://crowdin.com/project/krpos"]
 
 === Stats
@@ -64,6 +64,16 @@ Brought to you by: kingbatman, pegacat, quelgar, trudiersvaer
 A free java ldap client with LDIF support, security (inc SSL, SASL & GSSAPI), 
 translated into many languages (inc. Chinese), online help, user forms and many other features. 
 
+=== License
+
+* CAOSSL-v1.0
+* Computer Associates Open Source Software License, Version 1.0
+
+Reference
+
+* http://jxplorer.org/licence.html
+* https://openhub.net/licenses/caossl
+
 == More
 * https://github.com/pegacat/jxplorer/
 * http://pegacat.com/jxplorer/index.html
@@ -72,6 +82,7 @@ translated into many languages (inc. Chinese), online help, user forms and many 
 * http://pegacat.com/index.html
 
 == CA Products 
+
 * 'JXWorkBench' LDAP Enterprise administration product. 
 * JXplorer LDAP client. 
 
